@@ -22,16 +22,22 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 1rem 1.25rem;
 }
 
+/* ✅ LOGO (SMALL FIXED SIZE) */
 .logo {
-  font-size: 1.3rem;
-  font-weight: bold;
-  letter-spacing: 2px;
-  color: white;
+  display: flex;
+  align-items: center;
 }
 
+.logo img {
+  height: 32px;   /* ✅ FIXED SIZE */
+  width: auto;
+  display: block;
+}
+
+/* NAV LINKS */
 .nav-links a {
   margin-left: 20px;
   color: white;
@@ -56,6 +62,7 @@ body {
   opacity: 0.85;
 }
 
+/* BUTTON */
 .cta {
   display: inline-block;
   margin-top: 1.5rem;
@@ -65,6 +72,10 @@ body {
   text-decoration: none;
   font-weight: bold;
   border-radius: 4px;
+}
+
+.cta:hover {
+  opacity: 0.9;
 }
 
 /* SECTIONS */
@@ -94,6 +105,16 @@ body {
 /* CONTACT */
 .contact {
   text-align: center;
+}
+
+.contact a {
+  color: #00bcd4;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline;
 }
 
 /* FOOTER */
