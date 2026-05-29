@@ -1,126 +1,363 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-  color: #222;
+/* =========================
+   Kyote — Premium Theme
+   Glass nav + elevated cards
+   ========================= */
+
+:root {
+  --bg: #070A12;
+  --bg2: #0A1020;
+  --text: rgba(255,255,255,0.92);
+  --muted: rgba(255,255,255,0.68);
+  --muted2: rgba(255,255,255,0.55);
+
+  --card: rgba(255,255,255,0.07);
+  --card2: rgba(255,255,255,0.10);
+  --border: rgba(255,255,255,0.14);
+
+  --accent: #7CE7FF;
+  --accent2: #A78BFA;
+  --accent3: #22C55E;
+
+  --radius: 18px;
+  --shadow: 0 18px 55px rgba(0,0,0,0.55);
+  --shadow2: 0 10px 30px rgba(0,0,0,0.35);
+
+  --container: 1100px;
 }
 
-/* ✅ NAVBAR */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(900px 600px at 15% 10%, rgba(124,231,255,0.18) 0%, transparent 60%),
+    radial-gradient(900px 650px at 85% 20%, rgba(167,139,250,0.18) 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg) 0%, #05060A 100%);
+  color: var(--text);
+  line-height: 1.55;
+}
+
+a { color: inherit; }
+a:focus-visible, .btn:focus-visible {
+  outline: 3px solid rgba(124,231,255,0.40);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+
+.container {
+  width: min(var(--container), calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* =========================
+   NAV (glassmorphic)
+   Uses backdrop-filter blur + translucent bg + border for "glass" feel
+   ========================= */
 .nav {
-  display: flex;
-  justify-content: center;
-  background: #111;
-  color: white;
   position: sticky;
   top: 0;
   z-index: 1000;
+  background: rgba(10, 14, 24, 0.55);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .nav-inner {
-  width: 100%;
-  max-width: 1000px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.25rem;
+  justify-content: space-between;
+  padding: 14px 0;
 }
 
-/* ✅ LOGO (SMALL FIXED SIZE) */
 .logo {
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
 .logo img {
-  height: 32px;   /* ✅ FIXED SIZE */
+  height: 32px;
   width: auto;
   display: block;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
 }
 
-/* NAV LINKS */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .nav-links a {
-  margin-left: 20px;
-  color: white;
   text-decoration: none;
-  font-weight: bold;
+  color: var(--muted);
+  font-weight: 600;
+  padding: 10px 12px;
+  border-radius: 999px;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .nav-links a:hover {
-  color: #00bcd4;
+  color: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-1px);
 }
 
-/* HERO */
+/* =========================
+   HERO
+   ========================= */
 .hero {
-  background: #111;
-  color: white;
-  padding: 4rem 2rem;
+  position: relative;
+  padding: 76px 0 58px;
+  overflow: hidden;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
   text-align: center;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  margin: 0 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.hero h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2.4rem, 5vw, 4.1rem);
+  letter-spacing: -0.03em;
 }
 
 .subtitle {
-  font-size: 1.2rem;
-  opacity: 0.85;
+  margin: 0 auto 26px;
+  max-width: 780px;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  color: var(--muted);
 }
 
-/* BUTTON */
-.cta {
-  display: inline-block;
-  margin-top: 1.5rem;
-  padding: 0.8rem 1.5rem;
-  background: #00bcd4;
-  color: black;
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 14px;
   text-decoration: none;
-  font-weight: bold;
-  border-radius: 4px;
+  font-weight: 700;
+  border: 1px solid rgba(255,255,255,0.16);
+  transition: transform 160ms ease, background 180ms ease, border-color 180ms ease, opacity 180ms ease;
 }
 
-.cta:hover {
-  opacity: 0.9;
+.btn-primary {
+  background: linear-gradient(135deg, rgba(124,231,255,0.95) 0%, rgba(167,139,250,0.95) 100%);
+  color: rgba(10, 12, 18, 0.95);
+  border-color: rgba(255,255,255,0.10);
+  box-shadow: 0 12px 30px rgba(124,231,255,0.18);
 }
 
-/* SECTIONS */
-.section {
-  max-width: 900px;
-  margin: auto;
-  padding: 3rem 2rem;
-  background: white;
+.btn-ghost {
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.92);
 }
 
-.section.dark {
-  background: #222;
-  color: white;
+.btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.96;
 }
 
-/* FEATURES */
-.feature {
-  margin-bottom: 2rem;
-}
-
-.grid {
+/* Metrics mini-cards */
+.hero-metrics {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+  max-width: 980px;
+  margin: 0 auto;
 }
 
-/* CONTACT */
-.contact {
+.metric {
+  grid-column: span 4;
+  padding: 16px 16px;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: var(--shadow2);
+  text-align: left;
+  transition: transform 160ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.metric:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.18);
+}
+
+.metric-top { font-size: 1.1rem; margin-bottom: 6px; }
+.metric-title { font-weight: 700; margin-bottom: 2px; }
+.metric-sub { color: var(--muted2); font-size: 0.95rem; }
+
+/* Background orbs behind hero */
+.bg-orbs { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.orb {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 999px;
+  filter: blur(28px);
+  opacity: 0.30;
+}
+.orb-a { left: -180px; top: -120px; background: radial-gradient(circle, var(--accent) 0%, transparent 65%); }
+.orb-b { right: -220px; top: -160px; background: radial-gradient(circle, var(--accent2) 0%, transparent 65%); }
+.orb-c { left: 50%; bottom: -260px; transform: translateX(-50%); background: radial-gradient(circle, rgba(34,197,94,0.85) 0%, transparent 60%); opacity: 0.18; }
+
+/* =========================
+   SECTIONS
+   ========================= */
+.section { padding: 70px 0; }
+.section h2 {
+  margin: 0 0 12px;
   text-align: center;
+  font-size: clamp(1.7rem, 2.5vw, 2.35rem);
+  letter-spacing: -0.02em;
+}
+.lead {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--muted);
+  font-size: 1.07rem;
+}
+.lead.small { font-size: 1rem; color: var(--muted2); }
+
+.section-contrast {
+  background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-.contact a {
-  color: #00bcd4;
-  font-weight: bold;
+.section-head { margin-bottom: 26px; }
+
+/* Cards (glass-like) */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+.card {
+  grid-column: span 6;
+  padding: 22px 22px;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: var(--shadow2);
+  transition: transform 160ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.18);
+}
+
+.card h3 { margin: 0 0 8px; font-size: 1.15rem; }
+.card p { margin: 0; color: var(--muted); }
+
+/* =========================
+   CONTACT
+   ========================= */
+.contact { text-align: center; }
+
+.contact-card {
+  margin: 22px auto 0;
+  max-width: 640px;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: var(--shadow2);
+  padding: 18px 18px;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.contact-icon { font-size: 1.1rem; }
+.contact-link {
+  font-weight: 800;
   text-decoration: none;
+  border-bottom: 1px solid rgba(124,231,255,0.35);
+  padding-bottom: 2px;
+}
+.contact-link:hover { border-bottom-color: rgba(124,231,255,0.65); }
+.contact-note { margin: 10px 0 0; color: var(--muted2); font-size: 0.95rem; }
+
+/* =========================
+   FOOTER
+   ========================= */
+.footer {
+  padding: 26px 0;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.22);
 }
 
-.contact a:hover {
-  text-decoration: underline;
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: var(--muted2);
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 1.5rem;
-  background: #111;
-  color: #aaa;
+.footer-links {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
+.footer a { color: var(--muted2); text-decoration: none; font-weight: 600; }
+.footer a:hover { color: rgba(255,255,255,0.92); }
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 840px) {
+  .metric { grid-column: span 12; }
+  .card { grid-column: span 12; }
+  .nav-links a { padding: 9px 10px; }
+}
+
+/* =========================
+   Reduced motion support
+   If user requests reduced motion, we remove non-essential transitions/scroll animation
+   ========================= */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; } /* respects reduced motion preference */ /* 【4-381060】【5-4b2aff】 */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Note: backdrop-filter can be costly on low-end devices; keeping it mostly on nav + a few surfaces helps. 【2-f9db0c】 */
